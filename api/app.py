@@ -4,8 +4,7 @@ from protocol import get_temp
 from protocol import get_progress
 from protocol import get_status
 
-from flask import Flask
-from flask import jsonify
+from flask import Flask, jsonify
 
 from flask_cors import CORS
 app = Flask(__name__)
@@ -16,8 +15,7 @@ PORT = 8899  # default port
 
 @app.route("/")
 def index():
-    return ''
-
+    return 'Finder API'
 
 @app.route("/<string:ip_address>/info")
 def info(ip_address):
@@ -47,3 +45,6 @@ def progress(ip_address):
 def status(ip_address):
     printer_info = get_status({'ip': ip_address, 'port': PORT})
     return jsonify(printer_info)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5001)
