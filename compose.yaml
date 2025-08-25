@@ -1,0 +1,6 @@
+services:
+  server:
+    build: api
+    stop_signal: SIGINT
+    ports:
+      - "5001:5001"
