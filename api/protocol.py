@@ -1,15 +1,5 @@
-from packets import request_control_message
-from packets import request_info_message
-from packets import request_head_position
-from packets import request_temp
-from packets import request_progress
-from packets import request_status
-
-from regex_patterns import regex_for_field
-from regex_patterns import regex_for_coordinates
-from regex_patterns import regex_for_current_temperature
-from regex_patterns import regex_for_target_temperature
-from regex_patterns import regex_for_progress
+from packets import request_control_message, request_info_message, request_head_position, request_temp, request_progress, request_status
+from regex_patterns import regex_for_fieldi, regex_for_coordinates, regex_for_current_temperature, regex_for_target_temperature, regex_for_progress
 from socket_handler import send_and_receive
 
 
