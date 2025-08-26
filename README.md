@@ -58,7 +58,7 @@ Note: UDP Discovery Mechanism is not supported via Docker
 
 4. By default, you should now have access to the API at `localhost:5001`.
    
-    Try `http://localhost:5001/YOUR_PRINTER_IP_ADDRESS/info` to see if you get any info from the printer.
+    Try `http://localhost:5001/discover` to see if you get any info from the printer.
 
 # Run it in VS Code
 1. Make sure you have Flask installed:
@@ -70,7 +70,12 @@ Note: UDP Discovery Mechanism is not supported via Docker
 
 It supports:
 
-`/info`: General printer info:
+`/discover`: Flashforge Printers on your network:
+```
+{('192.168.12.188', 19000): 'Artemis\x00\x00\x00\x00\x00\x00\x00\x00\x00'}
+```
+
+`/<YOUR_PRINTER_IP_ADDRESS>/info`: General printer info:
 ```
 {
   "Firmware": "V1.5 20170419",
@@ -83,7 +88,7 @@ It supports:
 ```
 
 
-`/head-location`: Printer head location (as X, Y Z):
+`/<YOUR_PRINTER_IP_ADDRESS>/head-location`: Printer head location (as X, Y Z):
 ```
 {
   "X": "86.9984",
@@ -93,7 +98,7 @@ It supports:
 ```
 
 
-`/temp`: Current/target temperature
+`/<YOUR_PRINTER_IP_ADDRESS>/temp`: Current/target temperature
 ```
 {
   "TargetTemperature": "35",
@@ -101,7 +106,7 @@ It supports:
 }
 ```
 
-`/progress`: Print progress
+`/<YOUR_PRINTER_IP_ADDRESS>/progress`: Print progress
 ```
 {
   "BytesPrinted": 4276,
@@ -110,7 +115,7 @@ It supports:
 }
 ```
 
-`/status`: Status (i.e. if it's printing or not)
+`/<YOUR_PRINTER_IP_ADDRESS>/status`: Status (i.e. if it's printing or not)
 ```
 {
   "Endstop": "X-max: 1 Y-max: 0 Z-max: 1",

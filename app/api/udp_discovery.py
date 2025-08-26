@@ -28,7 +28,7 @@ class UDP_discovery:
         while time.time() - start_time < timeout:
             try:
                 data, addr = UDP_socket.recvfrom(len(self.discovery_message))
-                self.devices[addr] = data.decode('utf-8')
+                self.devices[addr] = str(data.decode('utf-8'))
             except TimeoutError as e:
                 continue
             
