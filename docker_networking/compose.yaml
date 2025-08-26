@@ -1,0 +1,23 @@
+services:
+  flashforge_finder_api:
+    build: .
+    stop_signal: SIGINT
+    ports:
+      - "5001:5001"
+    networks:
+      macvlan_network:
+        ipv4_address: 192.168.1.249
+
+networks:
+  macvlan_network:
+    external:
+      name: macvlan_network
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      driver: default
+      config:
+       - subnet: 192.168.1.0/24
+         ip_range: 192.168.1.248/29
+         gateway: 192.168.1.1
