@@ -10,6 +10,7 @@ Confirmed models (so far!):
 * FlashForge Adventurer 4 (Thanks @vazman13)
 * FlashForge Adventurer 5M Pro (Thanks @JMcrafter26)
 * FlashForge AD5X (Thanks @Ghitim)
+* FlashForge Artemis
 
 # Warning
 Use at your own risk. It only does reading operations but it is unofficial and may of course have bugs etc.
@@ -20,7 +21,7 @@ You start the Flask app which serves a lightweight HTTP server that exposes the 
 
 Example output:
 
-`http://localhost:5000/YOUR_PRINTER_IP_ADDRESS/info`:
+`http://localhost:5001/YOUR_PRINTER_IP_ADDRESS/info`:
 ```
   {
     "Firmware": " V1.5 20170419",
@@ -35,7 +36,8 @@ If your printer runs on a different port (default `8899`), you can change the se
 # Run it as a Docker container
 Run this:
 
-`docker build --tag flashforge-api . && docker run --publish 5000:5000 flashforge-api`
+`docker compose up --build -d`
+Note: UDP Discovery Mechanism is not supported via Docker
 
 # Start it on your machine
 1. Make sure you have Flask installed:
@@ -52,11 +54,11 @@ Run this:
 
 3. Run it:
 
-    `flask run --host=0.0.0.0 --port=5000 --without-threads`
+    `flask run --host=0.0.0.0 --port=5001 --without-threads`
 
-4. By default, you should now have access to the API at `localhost:5000`.
+4. By default, you should now have access to the API at `localhost:5001`.
    
-    Try `http://localhost:5000/YOUR_PRINTER_IP_ADDRESS/info` to see if you get any info from the printer.
+    Try `http://localhost:5001/YOUR_PRINTER_IP_ADDRESS/info` to see if you get any info from the printer.
 
 # Run it in VS Code
 1. Make sure you have Flask installed:

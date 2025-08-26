@@ -1,6 +1,6 @@
 services:
-  server:
-    build: api
+  flashforge_finder_api:
+    build: .
     stop_signal: SIGINT
     ports:
       - "5001:5001"
