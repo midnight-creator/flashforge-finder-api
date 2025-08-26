@@ -1,8 +1,5 @@
-from protocol import get_info
-from protocol import get_head_position
-from protocol import get_temp
-from protocol import get_progress
-from protocol import get_status
+from protocol import get_info, get_head_position, get_head_position, get_temp, get_progress, get_status
+from socket_handler import get_devices
 
 from flask import Flask, jsonify
 
