@@ -1,4 +1,4 @@
-from api.packets import request_control_message, request_info_message, request_head_position, request_temp, request_progress, request_status
+from api.packets import FlashForgeCommands
 from api.regex_patterns import regex_for_field, regex_for_coordinates, regex_for_current_temperature, regex_for_target_temperature, regex_for_progress
 from api.socket_handler import send_and_receive
 
@@ -8,9 +8,9 @@ import re
 
 def get_info(printer_address):
     """ Returns an object with basic printer information such as name etc."""
-
-    send_and_receive(printer_address, request_control_message)
-    info_result = send_and_receive(printer_address, request_info_message)
+    command = FlashForgeCommands()
+    send_and_receive(printer_address, command.request_control_message)
+    info_result = send_and_receive(printer_address, command.request_info_message)
 
     printer_info = {}
     info_fields = ['Type', 'Name', 'Firmware', 'SN', 'X', 'Tool Count']
@@ -23,9 +23,9 @@ def get_info(printer_address):
 
 def get_head_position(printer_address):
     """ Returns the current x/y/z coordinates of the printer head. """
-
-    send_and_receive(printer_address, request_control_message)
-    info_result = send_and_receive(printer_address, request_head_position)
+    command = FlashForgeCommands()
+    send_and_receive(printer_address, command.request_control_message)
+    info_result = send_and_receive(printer_address, command.request_head_position)
 
     printer_info = {}
     printer_info_fields = ['X', 'Y', 'Z']
@@ -38,9 +38,9 @@ def get_head_position(printer_address):
 
 def get_temp(printer_address):
     """ Returns printer temp. Both targeted and current. """
-
-    send_and_receive(printer_address, request_control_message)
-    info_result = send_and_receive(printer_address, request_temp)
+    command = FlashForgeCommands()
+    send_and_receive(printer_address, command.request_control_message)
+    info_result = send_and_receive(printer_address, command.request_temp)
 
     regex_temp = regex_for_current_temperature()
     regex_target_temp = regex_for_target_temperature()
@@ -51,8 +51,9 @@ def get_temp(printer_address):
 
 
 def get_progress(printer_address):
-    send_and_receive(printer_address, request_control_message)
-    info_result = send_and_receive(printer_address, request_progress)
+    command = FlashForgeCommands()
+    send_and_receive(printer_address, command.request_control_message)
+    info_result = send_and_receive(printer_address, command.request_progress)
 
     regex_groups = re.search(regex_for_progress(), info_result).groups()
     printed = int(regex_groups[0])
@@ -70,9 +71,9 @@ def get_progress(printer_address):
 
 def get_status(printer_address):
     """ Returns the current printer status. """
-
-    send_and_receive(printer_address, request_control_message)
-    info_result = send_and_receive(printer_address, request_status)
+    command = FlashForgeCommands()
+    send_and_receive(printer_address, command.request_control_message)
+    info_result = send_and_receive(printer_address, command.request_status)
 
     printer_info = {}
     printer_info_fields = ['Status', 'MachineStatus', 'MoveMode', 'Endstop']
