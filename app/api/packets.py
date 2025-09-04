@@ -30,6 +30,12 @@ class FlashForgeCommands:
         move += "\r"
         return move
     
+    def prepare_print(filename: str = "file.gx"):
+        return f"~M28 %%size%% 0:/user/{filename}\r"
+    
+    def print_start(filename: str = "file.gx"):
+        return f"~M23 0:/user/{filename}\r"
+    
 
     
 
