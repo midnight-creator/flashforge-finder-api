@@ -17,6 +17,8 @@ class FlashForgeCommands:
 
     stop_print = "~M26\r"
 
+    pause_print = "~M25\r"
+
     def move_xyz(self, x: int = None, y: int = None, z: int = None):
         move = "~G1"
         if x is not None:
@@ -30,13 +32,14 @@ class FlashForgeCommands:
         move += "\r"
         return move
     
-    def prepare_print(filename: str = "file.gx"):
-        return f"~M28 %%size%% 0:/user/{filename}\r"
+    def prepare_print(file_size: int, filename: str = "file.gx"):
+        return f"~M28 {file_size} 0:/user/{filename}\r"
     
-    def print_start(filename: str = "file.gx"):
+    def start_print(filename: str = "file.gx"):
         return f"~M23 0:/user/{filename}\r"
     
-
+    def delete_file(filename: str):
+        return f"~M30 0:/user/{filename}"
     
 
         
